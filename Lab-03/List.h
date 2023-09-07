@@ -21,5 +21,6 @@ public:
 	void sort();
 	int search(int val);
 	bool search_duplicate(int val);
+	~List();
 };
 

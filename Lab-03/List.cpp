@@ -162,3 +162,9 @@ void List::print(){
 	cout << "Size: " << size << "\n\n";
 
 }
+//----------------------------------------//
+List::~List() {
+	delete[] arr;
+	arr = nullptr;
+	size = 0;
+}
