@@ -79,6 +79,74 @@ void List::remove_at(int index) {
 	arr=tempArr;
 }
 //----------------------------------------//
+int List::Next(int index) {
+	if (index >= size)
+		return -1;
+	else
+		return arr[index];
+}
+//----------------------------------------//
+int List::Previous(int index) {
+	if (index >= size)
+		return -1;
+	else
+		return arr[index - 2];
+}
+//----------------------------------------//
+void List::sort() {
+
+	for (int i = 0; i < size-1; ++i) {
+		for (int j = i+1; j < size; ++j) {
+			if (arr[j] < arr[i]) {
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+}
+//----------------------------------------//
+int List::search(int val) {
+
+	int start = 0, end = size - 1;
+	for (int i = 0; i <= size; ++i) {
+		int mid = (start + end) / 2;
+		if (arr[mid] == val)
+			return mid;
+		else if (arr[mid] < val)
+			start = mid + 1;
+		else
+			end = mid - 1;
+	}
+	return -1;
+}
+//----------------------------------------//
+bool List::search_duplicate(int val) {
+	int count = 0;
+	for (int i = 0; i < size; ++i) {
+		if (arr[i] == val)
+			++count;
+	}
+	if (count > 1)
+		return true;
+	else
+		return false;
+}
+//----------------------------------------//
+void List::replace_by_index_value(int index, int val) {
+
+	if (index < size)
+		arr[index]=val;
+	else
+		cout << "Invalid index\n";
+}
+//----------------------------------------//
+void List::clear() {
+	delete[] arr;
+	arr = nullptr;
+	size = 0;
+}
+//----------------------------------------//
 bool List::is_empty() {
 	if (size == 0)
 		return true;
@@ -91,8 +159,6 @@ void List::print(){
 	for (int i = 0; i < size; ++i)
 		cout << arr[i] << " ";
 	cout << endl;
-	cout << "Size: " << size << endl;
+	cout << "Size: " << size << "\n\n";
 
 }
-
-

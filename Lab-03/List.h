@@ -13,9 +13,10 @@ public:
 	void remove_end();
 	void remove_at(int index);
 	void print();
+	int Next(int index);
+	int Previous(int index);
 	bool is_empty();
-	void replace_by_index();
-	void replace_by_value();
+	void replace_by_index_value(int index, int val);
 	void clear();
 	void sort();
 	int search(int val);
