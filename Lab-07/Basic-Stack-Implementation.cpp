@@ -43,29 +43,6 @@ public:
         no_of_elements--;
         return temp;
     }
-    void push_expression(string expression)
-    {
-        clear();
-        for (int i = 0; expression[i] != '\0'; i++)
-        {
-            if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[')
-                push(expression[i]);
-            else if (expression[i] == ')' || expression[i] == '}' || expression[i] == ']')
-            {
-                if (is_empty())
-                {
-                    cout << "Invalid Expression\n";
-                    return;
-                }
-                Node *temp = pop();
-                delete temp;
-            }
-        }
-        if (is_empty())
-            cout << "Valid Expression\n";
-        else
-            cout << "Invalid Expression\n";
-    }
     bool is_empty()
     {
         if (top == nullptr && no_of_elements == 0)
@@ -92,6 +69,8 @@ public:
                 temp = top;
             }
         }
+        else
+            cout << "Stack is already empty" << endl;
     }
     void Peak()
     {
@@ -119,9 +98,20 @@ public:
 int main()
 {
     Stack stack;
-    stack.push_expression("1+2*(3/4)");                                                                // valid
-    stack.push_expression("1 + 2 * [3 * 3 + {4 – 5 (6 (7/8/9) + 10)} – 11 + (12*8) / {13 +13}] + 14"); // valid
-    stack.push_expression("1 + 2 * [3 * 3 + {4 – 5 (6 (7/8/9) + 10) – 11 + (12*8)] + 14");             // invalid
+    stack.push('d');
+    stack.push('e');
+    stack.push('m');
+    stack.push('h');
+    stack.push('A');
+    stack.Print();
+    stack.Peak();
+    cout << "Check for Full: " << stack.is_full() << endl;
+    cout << "Check for Empty: " << stack.is_empty() << endl;
+    stack.pop();
+    stack.Print();
+    stack.Peak();
+    cout << "Clearing Stack....." << endl;
+    stack.clear();
 
     return 0;
 }
